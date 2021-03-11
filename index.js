@@ -34,5 +34,6 @@ app.use('/goods',goods);
 // 新闻资讯
 app.use('/news',news)
 
+
 app.listen(3001,()=>console.log('服务器启动成功'))
 

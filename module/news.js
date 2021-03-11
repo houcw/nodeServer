@@ -6,7 +6,8 @@ var newSchema = mongoose.Schema({
     type:Number,
     content:String,
     auth:String,
-    reder:Number
+    reder:Number,
+    type_desc:String
 })
 
 
