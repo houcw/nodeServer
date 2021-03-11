@@ -3,3 +3,7 @@
 
 ## 在server文件中 在终端运行 node index.js 
 
+## 服务启动成功之后可以在浏览器上输入 http://localhost:3001/admin/list 访问测试接口 
+
+## 由于资源受限所以该接口没有和数据库进行任何操作 
+
