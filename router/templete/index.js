@@ -3,6 +3,9 @@ const Templete = {
     status:"success",
     code:200,
     msg:"响应成功",
-    data:''
+    data:'',
+    total:'',
+    pageCurrent:'',
+    pageSize:''
 }
 module.exports  = Templete

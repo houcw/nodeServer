@@ -11,21 +11,30 @@ const newType = require('../module/newType')
 // 返回数据的模板格式
 const Templete = require('./templete')
 
-// 获取新闻类型列表
+// 获取新闻分頁列表
 newsExpress.get('/newsList', (request, response) => {
+    // 获取前端传递的分页参数
+    let pageCurrent = parseInt(request.query.pageCurrent)
+    let pageSize = parseInt(request.query.pageSize) 
+    
+
     // 连接News模块数据库
-    newsMoedl.find({}, function (err, res) {
+    newsMoedl.find({}).skip(pageSize*(pageCurrent-1)).limit(pageSize).exec(function (err, res) {
         // 连接出错
         if (err) {
             // 打印错误日志
             console.log(err);
             return
         }
+        Templete.pageCurrent = pageCurrent
+        Templete.pageSize = pageSize
+        Templete.total = res.length
         // 将数据返回给前端
         Templete.data = res
         response.send(Templete)
     })
 })
+
 
 // 根据不同的新闻类型进行展示 1
 newsExpress.get('/newsType', (request, response) => {
