@@ -38,25 +38,26 @@ newsExpress.get('/newsList', (request, response) => {
 
 // 根据不同的新闻类型进行展示 1
 newsExpress.get('/newsType', (request, response) => {
+    // 获取前端传递的分页参数
+    let pageCurrent = parseInt(request.query.pageCurrent)
+    let pageSize = parseInt(request.query.pageSize)     
     // 获取前端路由参数 (id)
     let type = request.query.type
     // 连接数据库，根据id查找
-    newsMoedl.find({ 'type': type }, function (err, res) {
+    newsMoedl.find({ 'type': type }).skip(pageSize*(pageCurrent-1)).limit(pageSize).exec(function (err, res) {
         // 连接错误
         if (err) {
             console.log(err);
             return
         }
         // 将数据返回给前端
+        Templete.pageCurrent = pageCurrent
+        Templete.pageSize = pageSize
+        Templete.total = res.length
         Templete.data = res
         response.send(Templete)
     })
-
-
 })
-
-
-
 // 获取新闻类型列表
 newsExpress.get('/typeList', (request, response) => {
     newType.find({}, function (err, res) {
