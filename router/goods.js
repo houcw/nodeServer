@@ -3,6 +3,8 @@ const express = require('express')
 const goods = express.Router();
 // 连接数库模块
 const goodsModel = require('../module/goods')
+// 返回数据的模板格式
+const Templete = require('./templete')
 
 goods.get('/goodslist', (req, respone) => {
     // 分页查询数据
@@ -12,12 +14,8 @@ goods.get('/goodslist', (req, respone) => {
             return
         }
         // 将数据返回给前端
-        let data = {
-            status:'success',
-            code:200,
-            data:res
-        }
-        respone.send(data)
+        Templete.data = res
+        respone.send(Templete)
     })
 })
 
