@@ -3,7 +3,7 @@ const mongose = require('mongoose')
 
 // 建立连接
 const url = "mongodb://localhost:27017/nuxt"
- mongose.connect(url,{useNewUrlParser:true},function(err){
+ mongose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true},function(err){
     if(err){
         console.log(err);
         return
