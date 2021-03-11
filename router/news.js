@@ -11,7 +11,7 @@ const newType = require('../module/newType')
 // 返回数据的模板格式
 const Templete = require('./templete')
 
-// 获取新闻列表
+// 获取新闻类型列表
 newsExpress.get('/newsList', (request, response) => {
     // 连接News模块数据库
     newsMoedl.find({}, function (err, res) {
